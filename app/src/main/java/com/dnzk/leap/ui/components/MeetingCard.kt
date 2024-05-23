@@ -21,7 +21,7 @@ import com.dnzk.leap.ui.theme.Gray50
 
 
 @Composable
-fun MeetingCard(title: String, date: String, participants: List<MeetingParticipant>) {
+fun MeetingCard(title: String, date: String, participants: List<MeetingParticipant>, onClick: () -> Unit) {
     Surface(
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(
@@ -31,8 +31,7 @@ fun MeetingCard(title: String, date: String, participants: List<MeetingParticipa
         modifier = Modifier
             .fillMaxWidth()
             .shadow(5.dp, shape = RoundedCornerShape(8.dp), ambientColor = DefaultShadowColor),
-        onClick = {
-        }
+        onClick = onClick
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             Text(

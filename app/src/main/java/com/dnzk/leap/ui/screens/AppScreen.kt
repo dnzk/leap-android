@@ -74,7 +74,17 @@ fun AppScreen() {
             startDestination = Screens.Home.route,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(Screens.Home.route) { HomeScreen() }
+            composable(Screens.Home.route) {
+                HomeScreen(onNavigateToMeetingsScreen = {
+                    navController.navigate(Screens.Meetings.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                })
+            }
             composable(Screens.Meetings.route) { MeetingsScreen() }
             composable(Screens.Profile.route) { ProfileScreen() }
         }

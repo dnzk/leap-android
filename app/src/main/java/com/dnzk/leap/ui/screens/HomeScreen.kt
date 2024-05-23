@@ -14,7 +14,7 @@ import com.dnzk.leap.ui.components.MeetingCard
 import com.dnzk.leap.ui.components.meetings.MeetingParticipant
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onNavigateToMeetingsScreen: () -> Unit) {
     Surface(
         modifier = Modifier
             .padding(10.dp)
@@ -24,13 +24,19 @@ fun HomeScreen() {
             AppLogo()
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 MeetingCard(
-                    title = "Quarterly review - Tim Chaves", date = "Mar 2", participants = listOf(
+                    onClick = onNavigateToMeetingsScreen,
+                    title = "Quarterly review - Tim Chaves",
+                    date = "Mar 2",
+                    participants = listOf(
                         MeetingParticipant(name = "Tim Chaves"),
                         MeetingParticipant(name = "Olivia Palmer"),
                     )
                 )
                 MeetingCard(
-                    title = "Meeting number 2", date = "Mar 3", participants = listOf(
+                    onClick = onNavigateToMeetingsScreen,
+                    title = "Meeting number 2",
+                    date = "Mar 3",
+                    participants = listOf(
                         MeetingParticipant(name = "Olivia Palmer")
                     )
                 )
