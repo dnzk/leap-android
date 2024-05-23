@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.dnzk.leap.ui.screens.AuthScreen
+import com.dnzk.leap.ui.screens.AppScreen
 import com.dnzk.leap.ui.theme.LeapTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LeapTheme {
-                AuthScreen()
+                AppScreen()
             }
         }
     }
