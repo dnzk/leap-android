@@ -17,7 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,7 +29,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun AppScreen() {
+fun LoggedIn() {
     val navController = rememberNavController()
     var navigationSelectedItem by remember {
         mutableIntStateOf(0)
@@ -88,6 +90,20 @@ fun AppScreen() {
             composable(Screens.Meetings.route) { MeetingsScreen() }
             composable(Screens.Profile.route) { ProfileScreen() }
         }
+    }
+}
+
+@Composable
+fun AppScreen() {
+    var loggedIn by rememberSaveable {
+        mutableStateOf(false)
+    }
+    if (loggedIn) {
+        LoggedIn()
+    } else {
+        AuthScreen(onLogIn = {
+            loggedIn = true
+        })
     }
 }
 

@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
@@ -26,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.dnzk.leap.ui.components.AppLogo
 
 @Composable
-fun AuthScreen(modifier: Modifier = Modifier) {
+fun AuthScreen(modifier: Modifier = Modifier, onLogIn: () -> Unit) {
     var email by rememberSaveable {
         mutableStateOf("")
     }
@@ -76,10 +77,11 @@ fun AuthScreen(modifier: Modifier = Modifier) {
                     label = {
                         TextFieldLabel("Password")
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    visualTransformation = PasswordVisualTransformation()
                 )
                 Button(
-                    onClick = { /*TODO*/ }, modifier = Modifier
+                    onClick = onLogIn, modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 20.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
@@ -99,5 +101,5 @@ fun TextFieldLabel(label: String) {
 @Preview
 @Composable
 fun PreviewAuthScreen() {
-    AuthScreen()
+    AuthScreen(onLogIn = {})
 }
